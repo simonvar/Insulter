@@ -6,10 +6,11 @@ import io.github.simonvar.insulter.InsultState
 import io.github.simonvar.insulter.R
 import io.github.simonvar.insulter.event.UiEvent
 import io.github.simonvar.insulter.base.ObservableSourceActivity
+import io.github.simonvar.insulter.viewmodel.MainViewModel
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<InsultState> {
+class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<MainViewModel> {
 
     private val bindings = MainActivityBindings(this,
         InsultFeature(),
@@ -39,8 +40,8 @@ class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<InsultState> 
         }
     }
 
-    override fun accept(state: InsultState) {
-        if (state.text != null) insult_text.text = state.text
+    override fun accept(viewModel: MainViewModel) {
+        insult_text.text = viewModel.text
     }
 
 }

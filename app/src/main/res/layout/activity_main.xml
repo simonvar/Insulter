@@ -21,13 +21,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/insult_progress"
+        style="@style/SpinKitView.Large.ThreeBounce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:SpinKit_Color="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/insult_generate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/insult_generate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:src="@drawable/ic_generate"
         android:backgroundTint="@android:color/black"
+        android:src="@drawable/ic_generate"
         android:tint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/insult_share"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,8 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/buttons_bottom_margin"
-        android:padding="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="16dp"
         android:src="@drawable/ic_share"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/insult_copy"
@@ -54,8 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/buttons_bottom_margin"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_copy"
         android:padding="16dp"
+        android:src="@drawable/ic_copy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

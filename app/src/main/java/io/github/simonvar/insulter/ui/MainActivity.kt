@@ -1,6 +1,7 @@
 package io.github.simonvar.insulter.ui
 
 import android.os.Bundle
+import android.view.View
 import io.github.simonvar.insulter.feature.InsultFeature
 import io.github.simonvar.insulter.R
 import io.github.simonvar.insulter.event.UiEvent
@@ -41,6 +42,11 @@ class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<MainViewModel
 
     override fun accept(viewModel: MainViewModel) {
         insult_text.text = viewModel.text
+        insult_progress.visible(viewModel.isLoading)
+    }
+
+    private fun View.visible(isVisible: Boolean) {
+        visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
 }

@@ -43,11 +43,15 @@ class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<MainViewModel
     override fun accept(viewModel: MainViewModel) {
         insult_text.text = viewModel.text
         insult_progress.visible(viewModel.isLoading)
+        insult_share.isEnabled = viewModel.isTextActionsEnabled
+        insult_copy.isEnabled = viewModel.isTextActionsEnabled
     }
 
     private fun View.visible(isVisible: Boolean) {
         visibility = if (isVisible) View.VISIBLE else View.GONE
     }
+
+
 
 }
 

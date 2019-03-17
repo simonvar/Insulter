@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Insulter</string>
+    <string name="response_error">Response Error!</string>
 </resources>

@@ -1,4 +1,4 @@
-package io.github.simonvar.insulter
+package io.github.simonvar.insulter.event
 
 sealed class UiEvent {
     object GenerateEvent : UiEvent()

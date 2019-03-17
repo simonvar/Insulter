@@ -1,6 +1,6 @@
 package io.github.simonvar.insulter.event
 
-import io.github.simonvar.insulter.feature.InsultWish
+import io.github.simonvar.insulter.feature.data.InsultWish
 
 object UiEventTransformer : (UiEvent) -> InsultWish? {
 

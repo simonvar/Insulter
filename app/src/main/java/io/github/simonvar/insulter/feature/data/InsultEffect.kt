@@ -1,4 +1,4 @@
-package io.github.simonvar.insulter.feature
+package io.github.simonvar.insulter.feature.data
 
 sealed class InsultEffect {
     object StartedLoading : InsultEffect()

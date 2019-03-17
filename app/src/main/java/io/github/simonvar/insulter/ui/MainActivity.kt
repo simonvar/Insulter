@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<MainViewModel> {
 
     private val bindings = MainActivityBindings(this,
-        InsultFeature(),
+        InsultFeature(this),
         NewsListener(this)
     )
 

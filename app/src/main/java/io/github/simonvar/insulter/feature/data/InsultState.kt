@@ -1,4 +1,4 @@
-package io.github.simonvar.insulter.feature
+package io.github.simonvar.insulter.feature.data
 
 data class InsultState(
     val text: String?,

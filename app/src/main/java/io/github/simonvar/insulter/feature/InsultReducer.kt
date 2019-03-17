@@ -1,6 +1,8 @@
 package io.github.simonvar.insulter.feature
 
 import com.badoo.mvicore.element.Reducer
+import io.github.simonvar.insulter.feature.data.InsultEffect
+import io.github.simonvar.insulter.feature.data.InsultState
 
 class InsultReducer : Reducer<InsultState, InsultEffect> {
     override fun invoke(state: InsultState, effect: InsultEffect) = when (effect) {

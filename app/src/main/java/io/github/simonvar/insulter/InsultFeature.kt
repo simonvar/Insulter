@@ -60,7 +60,7 @@ class InsultReducer : Reducer<InsultState, InsultEffect> {
 class InsultNewsPublisher : NewsPublisher<InsultWish, InsultEffect, InsultState, InsultNews> {
     override fun invoke(wish: InsultWish, effect: InsultEffect, state: InsultState) = when (effect) {
         is InsultEffect.ErrorLoading -> InsultNews.ResponseError(effect.throwable)
-        is InsultEffect.LoadedInsult -> InsultNews.Copied
+        is InsultEffect.CopiedInsult -> InsultNews.Copied
         else -> null
     }
 

@@ -13,6 +13,7 @@ class MainActivityBindings(
 ) : AndroidBindings<MainActivity>(view) {
 
     override fun setup(view: MainActivity) {
+        binder.bind(feature to view)
         binder.bind(view to feature using UiEventTransformer)
         binder.bind(feature.news to newsListener named "MainActivity.News")
     }

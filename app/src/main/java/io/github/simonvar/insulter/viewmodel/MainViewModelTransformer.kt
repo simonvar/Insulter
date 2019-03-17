@@ -1,6 +1,6 @@
 package io.github.simonvar.insulter.viewmodel
 
-import io.github.simonvar.insulter.InsultState
+import io.github.simonvar.insulter.feature.InsultState
 
 class MainViewModelTransformer : (InsultState) -> MainViewModel {
 

@@ -1,8 +1,7 @@
 package io.github.simonvar.insulter.ui
 
 import android.os.Bundle
-import io.github.simonvar.insulter.InsultFeature
-import io.github.simonvar.insulter.InsultState
+import io.github.simonvar.insulter.feature.InsultFeature
 import io.github.simonvar.insulter.R
 import io.github.simonvar.insulter.event.UiEvent
 import io.github.simonvar.insulter.base.ObservableSourceActivity

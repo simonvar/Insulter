@@ -2,7 +2,7 @@ package io.github.simonvar.insulter.ui
 
 import android.content.Context
 import android.widget.Toast
-import io.github.simonvar.insulter.InsultNews
+import io.github.simonvar.insulter.feature.InsultNews
 import io.github.simonvar.insulter.R
 import io.reactivex.functions.Consumer
 

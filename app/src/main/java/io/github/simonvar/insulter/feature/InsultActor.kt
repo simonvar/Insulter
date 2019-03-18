@@ -2,6 +2,8 @@ package io.github.simonvar.insulter.feature
 
 import android.content.Context
 import com.badoo.mvicore.element.Actor
+import io.github.simonvar.insulter.api.Insult
+import io.github.simonvar.insulter.api.InsultApiService
 import io.github.simonvar.insulter.feature.data.InsultEffect
 import io.github.simonvar.insulter.feature.data.InsultEffect.*
 import io.github.simonvar.insulter.feature.data.InsultState
@@ -17,15 +19,20 @@ import java.util.concurrent.TimeUnit
 class InsultActor(context: Context) : Actor<InsultState, InsultWish, InsultEffect> {
     private val clipboard = ClipboardService(context)
     private val share = ShareService(context)
+    private val api = InsultApiService("json")
 
     override fun invoke(state: InsultState, wish: InsultWish): Observable<InsultEffect> =
         when (wish) {
             is InsultWish.LoadInsult ->
-                just(LoadedInsult("Hello"))
-                    .map { it as InsultEffect }
-                    .delay(1, TimeUnit.SECONDS)
+                api.generateInsult("en")
+                    .map(Insult::insult)
+                    .map(::LoadedInsult)
+                    .cast(InsultEffect::class.java)
                     .startWith(just(StartedLoading))
-                    .subscribeOn(Schedulers.io())
+                    .onErrorReturn(::ErrorLoading)
+                    .doOnNext {
+                        val a = 5
+                    }
                     .observeOn(AndroidSchedulers.mainThread())
 
             is InsultWish.CopyInsult -> clipboard.copy(wish.text)

@@ -17,6 +17,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class InsultActor(context: Context) : Actor<InsultState, InsultWish, InsultEffect> {
+
     private val clipboard = ClipboardService(context)
     private val share = ShareService(context)
     private val api = InsultApiService("json")
@@ -30,9 +31,6 @@ class InsultActor(context: Context) : Actor<InsultState, InsultWish, InsultEffec
                     .cast(InsultEffect::class.java)
                     .startWith(just(StartedLoading))
                     .onErrorReturn(::ErrorLoading)
-                    .doOnNext {
-                        val a = 5
-                    }
                     .observeOn(AndroidSchedulers.mainThread())
 
             is InsultWish.CopyInsult -> clipboard.copy(wish.text)

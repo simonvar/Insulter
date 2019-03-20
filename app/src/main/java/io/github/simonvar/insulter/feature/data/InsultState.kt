@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class InsultState(
     val text: String?,
-    val isLoading: Boolean,
-    val lang: InsultLanguage
+    val isLoading: Boolean = false,
+    val lang: InsultLanguage,
+    val isDialogShown: Boolean = false
 ) : Parcelable

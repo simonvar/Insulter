@@ -30,6 +30,8 @@ class InsultActor(
                     .onErrorReturn(::ErrorLoading)
                     .observeOn(AndroidSchedulers.mainThread())
 
+            is InsultWish.LanguageDialog -> just(InsultEffect.ShowLangugeDialog)
+
             is InsultWish.CopyInsult -> clipboard.copy(wish.text)
 
             is InsultWish.ShareInsult -> share.share(wish.text)

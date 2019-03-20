@@ -2,4 +2,8 @@
     <string name="app_name">Insulter</string>
     <string name="response_error">Response Error!</string>
     <string name="text_copied">Insult Copied</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+    <string name="deutsch">Deutsch</string>
+    <string name="french">French</string>
 </resources>

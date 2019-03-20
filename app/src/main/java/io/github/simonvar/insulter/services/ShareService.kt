@@ -12,6 +12,7 @@ class ShareService(private val context: Context) {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, text)
             type = "text/plain"
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         context.startActivity(sendIntent)
         return Observable.just(InsultEffect.SharedInsult)

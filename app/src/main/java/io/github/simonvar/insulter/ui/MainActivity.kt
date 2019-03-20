@@ -6,6 +6,7 @@ import io.github.simonvar.insulter.feature.InsultFeature
 import io.github.simonvar.insulter.R
 import io.github.simonvar.insulter.event.UiEvent
 import io.github.simonvar.insulter.base.ObservableSourceActivity
+import io.github.simonvar.insulter.ui.langdialog.InsultLanguageDialog
 import io.github.simonvar.insulter.viewmodel.MainViewModel
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
@@ -41,6 +42,10 @@ class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<MainViewModel
         insult_generate.setOnClickListener {
             onNext(UiEvent.GenerateEvent)
         }
+
+        insult_language.setOnClickListener {
+            onNext(UiEvent.ShowLangugeDialogEvent)
+        }
     }
 
     override fun accept(viewModel: MainViewModel) {
@@ -48,6 +53,14 @@ class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<MainViewModel
         insult_progress.visible(viewModel.isLoading)
         insult_share.isEnabled = viewModel.isTextActionsEnabled
         insult_copy.isEnabled = viewModel.isTextActionsEnabled
+        dialog(viewModel.isDialogShown)
+    }
+
+    private fun dialog(isDialogShown: Boolean){
+        if (isDialogShown){
+            val dialog = InsultLanguageDialog.instance()
+            dialog.show(supportFragmentManager, "LanguageDialog")
+        }
     }
 
     private fun View.visible(isVisible: Boolean) {

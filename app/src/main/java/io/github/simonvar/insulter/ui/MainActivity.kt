@@ -9,11 +9,14 @@ import io.github.simonvar.insulter.base.ObservableSourceActivity
 import io.github.simonvar.insulter.viewmodel.MainViewModel
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.android.inject
 
 class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<MainViewModel> {
 
+    private val insultFeature by inject<InsultFeature>()
+
     private val bindings = MainActivityBindings(this,
-        InsultFeature(this),
+        insultFeature,
         NewsListener(this)
     )
 

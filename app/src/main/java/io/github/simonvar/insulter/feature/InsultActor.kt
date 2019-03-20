@@ -1,6 +1,5 @@
 package io.github.simonvar.insulter.feature
 
-import android.content.Context
 import com.badoo.mvicore.element.Actor
 import io.github.simonvar.insulter.api.Insult
 import io.github.simonvar.insulter.api.InsultApiService
@@ -13,14 +12,12 @@ import io.github.simonvar.insulter.services.ShareService
 import io.reactivex.Observable
 import io.reactivex.Observable.just
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 
-class InsultActor(context: Context) : Actor<InsultState, InsultWish, InsultEffect> {
-
-    private val clipboard = ClipboardService(context)
-    private val share = ShareService(context)
-    private val api = InsultApiService("json")
+class InsultActor(
+    private val clipboard: ClipboardService,
+    private val share: ShareService,
+    private val api: InsultApiService
+) : Actor<InsultState, InsultWish, InsultEffect> {
 
     override fun invoke(state: InsultState, wish: InsultWish): Observable<InsultEffect> =
         when (wish) {

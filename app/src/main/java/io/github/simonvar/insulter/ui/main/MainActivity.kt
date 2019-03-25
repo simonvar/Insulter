@@ -6,6 +6,7 @@ import io.github.simonvar.insulter.feature.InsultFeature
 import io.github.simonvar.insulter.R
 import io.github.simonvar.insulter.event.UiEvent
 import io.github.simonvar.insulter.base.ObservableSourceActivity
+import io.github.simonvar.insulter.base.setOnClick
 import io.github.simonvar.insulter.feature.models.InsultLanguage
 import io.github.simonvar.insulter.ui.langdialog.InsultLanguageDialog
 import io.github.simonvar.insulter.viewmodel.MainViewModel
@@ -33,20 +34,24 @@ class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<MainViewModel
     private fun currentText() = insult_text.text.toString()
 
     private fun setupView(){
-        insult_share.setOnClickListener {
+        insult_share.setOnClick {
             onNext(UiEvent.ShareEvent(currentText()))
         }
 
-        insult_copy.setOnClickListener {
+        insult_copy.setOnClick {
             onNext(UiEvent.CopyEvent(currentText()))
         }
 
-        insult_generate.setOnClickListener {
+        insult_generate.setOnClick {
             onNext(UiEvent.GenerateEvent)
         }
 
-        insult_language.setOnClickListener {
+        insult_language.setOnClick {
             onNext(UiEvent.ShowLanguageDialogEvent)
+        }
+
+        insult_info.setOnClick {
+            onNext(UiEvent.OpenAbout)
         }
     }
 

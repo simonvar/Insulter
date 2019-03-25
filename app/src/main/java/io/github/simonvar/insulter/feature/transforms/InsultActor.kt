@@ -39,5 +39,7 @@ class InsultActor(
             is InsultWish.ShareInsult -> share.share(wish.text)
 
             is InsultWish.ChangeLang -> just(ChangedLang(wish.lang))
+
+            is InsultWish.OpenAbout -> just(OpenAbout)
         }
 }

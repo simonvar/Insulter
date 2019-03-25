@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import io.github.simonvar.insulter.feature.data.InsultNews
 import io.github.simonvar.insulter.R
+import io.github.simonvar.insulter.ui.about.AboutActivity
 import io.reactivex.functions.Consumer
 
 class NewsListener(private val context: Context) : Consumer<InsultNews> {
@@ -13,6 +14,7 @@ class NewsListener(private val context: Context) : Consumer<InsultNews> {
         when (news) {
             is InsultNews.ResponseError -> error(news.throwable)
             is InsultNews.Copied -> copied()
+            is InsultNews.About -> about()
             else -> Log.d(TAG, "Another News")
         }
     }
@@ -22,6 +24,8 @@ class NewsListener(private val context: Context) : Consumer<InsultNews> {
 
     private fun error(throwable: Throwable) =
         Toast.makeText(context, context.getString(R.string.response_error), Toast.LENGTH_SHORT).show()
+
+    private fun about() = context.startActivity(AboutActivity.intent(context))
 
     companion object {
         private const val TAG = "NewsListener"

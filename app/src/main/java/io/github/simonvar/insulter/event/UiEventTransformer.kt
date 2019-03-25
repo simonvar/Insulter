@@ -11,6 +11,7 @@ object UiEventTransformer : (UiEvent) -> InsultWish? {
         is UiEvent.CopyEvent -> InsultWish.CopyInsult(event.text)
         is UiEvent.DismissLanguageDialogEvent -> InsultWish.DismissDialog
         is UiEvent.ChangeLangEvent -> InsultWish.ChangeLang(event.lang)
+        is UiEvent.OpenAbout -> InsultWish.OpenAbout
     }
 
 }

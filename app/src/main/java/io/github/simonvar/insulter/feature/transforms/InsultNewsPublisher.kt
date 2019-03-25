@@ -14,6 +14,7 @@ class InsultNewsPublisher : NewsPublisher<InsultWish, InsultEffect, InsultState,
                 effect.throwable
             )
             is InsultEffect.CopiedInsult -> InsultNews.Copied
+            is InsultEffect.OpenAbout -> InsultNews.About
             else -> null
         }
 

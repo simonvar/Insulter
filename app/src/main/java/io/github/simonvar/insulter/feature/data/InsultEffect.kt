@@ -8,6 +8,7 @@ sealed class InsultEffect {
     object SharedInsult : InsultEffect()
     object ShowLanguageDialog : InsultEffect()
     object DismissLanguageDialog : InsultEffect()
+    object OpenAbout : InsultEffect()
     data class ChangedLang(val lang: InsultLanguage) : InsultEffect()
     data class LoadedInsult(val text: String) : InsultEffect()
     data class ErrorLoading(val throwable : Throwable) : InsultEffect()

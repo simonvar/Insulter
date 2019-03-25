@@ -12,10 +12,6 @@ import android.net.Uri
 
 class AboutActivity : AppCompatActivity() {
 
-    companion object {
-        fun intent(context: Context) = Intent(context, AboutActivity::class.java)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
@@ -28,6 +24,7 @@ class AboutActivity : AppCompatActivity() {
         simonvar.setOnClick(::openSimonvar)
         badoo.setOnClick(::openMviBadoo)
         evilinsult.setOnClick(::openInsulter)
+        repo.setOnClick(::openRepository)
     }
 
     private fun openLink(link: String) {
@@ -42,4 +39,10 @@ class AboutActivity : AppCompatActivity() {
     private fun openMviBadoo() = openLink("https://github.com/badoo/MVICore")
 
     private fun openInsulter() = openLink("https://github.com/EvilInsultGenerator/")
+
+    private fun openRepository() = openLink("https://github.com/simonvar/Insulter")
+
+    companion object {
+        fun intent(context: Context) = Intent(context, AboutActivity::class.java)
+    }
 }

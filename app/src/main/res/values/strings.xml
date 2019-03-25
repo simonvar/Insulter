@@ -6,4 +6,13 @@
     <string name="russian">Russian</string>
     <string name="deutsch">Deutsch</string>
     <string name="french">French</string>
+    <string name="insulter_description">Simple application for generating insults in different languages, using Badoo MVI Core framework.</string>
+    <string name="authors">Authors</string>
+    <string name="yarosalv_atroshenko">Yarosalv Atroshenko</string>
+    <string name="simon_varivoda">Simon Varivoda</string>
+    <string name="thanks">Thanks</string>
+    <string name="badoo_mvi_core">Badoo MVI Core</string>
+    <string name="insulter_api">Insulter API</string>
+    <string name="about">About</string>
+    <string name="home">Home</string>
 </resources>

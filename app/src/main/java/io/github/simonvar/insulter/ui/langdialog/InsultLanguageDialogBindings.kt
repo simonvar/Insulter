@@ -1,7 +1,10 @@
 package io.github.simonvar.insulter.ui.langdialog
 
 import com.badoo.mvicore.android.AndroidBindings
+import com.badoo.mvicore.binder.using
+import io.github.simonvar.insulter.event.UiEventTransformer
 import io.github.simonvar.insulter.feature.InsultFeature
+import io.github.simonvar.insulter.viewmodel.MainViewModelTransformer
 
 class InsultLanguageDialogBindings(
     view: InsultLanguageDialog,
@@ -9,7 +12,7 @@ class InsultLanguageDialogBindings(
 ) : AndroidBindings<InsultLanguageDialog>(view) {
 
     override fun setup(view: InsultLanguageDialog) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        binder.bind(view to feature using UiEventTransformer)
     }
 
 }

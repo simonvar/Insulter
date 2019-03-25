@@ -8,7 +8,8 @@ class MainViewModelTransformer : (InsultState) -> MainViewModel {
         text = state.text ?: "",
         isLoading = state.isLoading,
         isTextActionsEnabled = state.text != null,
-        isDialogShown = state.isDialogShown
+        isDialogShown = state.isDialogShown,
+        lang = state.lang
     )
 
 

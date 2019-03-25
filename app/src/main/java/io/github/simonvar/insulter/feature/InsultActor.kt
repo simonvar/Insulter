@@ -22,7 +22,7 @@ class InsultActor(
     override fun invoke(state: InsultState, wish: InsultWish): Observable<InsultEffect> =
         when (wish) {
             is InsultWish.LoadInsult ->
-                api.generateInsult("en")
+                api.generateInsult(state.lang.literal)
                     .map(Insult::insult)
                     .map(::LoadedInsult)
                     .cast(InsultEffect::class.java)
@@ -30,11 +30,14 @@ class InsultActor(
                     .onErrorReturn(::ErrorLoading)
                     .observeOn(AndroidSchedulers.mainThread())
 
-            is InsultWish.LanguageDialog -> just(InsultEffect.ShowLangugeDialog)
+            is InsultWish.LanguageDialog -> just(ShowLanguageDialog)
+
+            is InsultWish.DismissDialog -> just(DismissLanguageDialog)
 
             is InsultWish.CopyInsult -> clipboard.copy(wish.text)
 
             is InsultWish.ShareInsult -> share.share(wish.text)
 
+            is InsultWish.ChangeLang -> just(ChangedLang(wish.lang))
         }
 }

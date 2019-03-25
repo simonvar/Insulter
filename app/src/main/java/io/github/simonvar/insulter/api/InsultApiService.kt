@@ -1,11 +1,18 @@
 package io.github.simonvar.insulter.api
 
+import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class InsultApiService(private val type: String) {
+interface InsultRepository {
+
+    fun generateInsult(language: String) : Observable<Insult>
+
+}
+
+class InsultApiService(private val type: String) : InsultRepository {
 
     companion object {
         private const val INSULT_API = "https://evilinsult.com/"
@@ -29,7 +36,8 @@ class InsultApiService(private val type: String) {
         retrofit.create(InsultApi::class.java)
     }
 
-    fun generateInsult(language: String) = insultApi.generateInsult(language, type)
-        .subscribeOn(Schedulers.io())
+    override fun generateInsult(language: String) = insultApi
+        .generateInsult(language, type)
+        .subscribeOn(Schedulers.io())!!
 
 }

@@ -2,16 +2,21 @@ package io.github.simonvar.insulter
 
 import android.app.Application
 import io.github.simonvar.insulter.api.InsultApiService
+import io.github.simonvar.insulter.api.InsultRepository
+import io.github.simonvar.insulter.base.ObserveMainThreadRxComposer
 import io.github.simonvar.insulter.feature.data.InsultState
 import io.github.simonvar.insulter.feature.models.InsultLanguage
 import io.github.simonvar.insulter.feature.transforms.InsultActor
 import io.github.simonvar.insulter.feature.InsultFeature
 import io.github.simonvar.insulter.feature.transforms.InsultNewsPublisher
 import io.github.simonvar.insulter.feature.transforms.InsultReducer
+import io.github.simonvar.insulter.services.Clipboard
 import io.github.simonvar.insulter.services.ClipboardService
+import io.github.simonvar.insulter.services.Share
 import io.github.simonvar.insulter.services.ShareService
 import org.koin.android.ext.android.startKoin
 import org.koin.dsl.module.module
+
 
 class InsultApp : Application() {
 
@@ -19,9 +24,9 @@ class InsultApp : Application() {
         super.onCreate()
 
         val servicesModule = module {
-            factory { ClipboardService(get()) }
-            factory { ShareService(get()) }
-            factory { InsultApiService("json") }
+            factory { ClipboardService(get()) as Clipboard }
+            factory { ShareService(get()) as Share }
+            factory { InsultApiService("json") as InsultRepository }
         }
 
         val insultModule = module {
@@ -30,7 +35,8 @@ class InsultApp : Application() {
                 InsultActor(
                     get(),
                     get(),
-                    get()
+                    get(),
+                    ObserveMainThreadRxComposer()
                 )
             }
             factory { InsultReducer() }

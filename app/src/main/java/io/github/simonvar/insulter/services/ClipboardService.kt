@@ -6,13 +6,16 @@ import android.content.Context
 import io.github.simonvar.insulter.feature.data.InsultEffect
 import io.reactivex.Observable
 
-class ClipboardService(private val context: Context) {
+interface Clipboard {
+    fun copy(text: String)
+}
 
-    fun copy(text: String): Observable<InsultEffect> {
+class ClipboardService(private val context: Context) : Clipboard {
+
+    override fun copy(text: String){
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val data =  ClipData.newPlainText(LABEL, text)
         clipboard.primaryClip = data
-        return Observable.just(InsultEffect.CopiedInsult)
     }
 
     companion object {

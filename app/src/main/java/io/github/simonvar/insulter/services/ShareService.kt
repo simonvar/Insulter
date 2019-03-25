@@ -5,9 +5,15 @@ import android.content.Intent
 import io.github.simonvar.insulter.feature.data.InsultEffect
 import io.reactivex.Observable
 
-class ShareService(private val context: Context) {
+interface Share {
 
-    fun share(text: String): Observable<InsultEffect> {
+    fun share(text: String)
+
+}
+
+class ShareService(private val context: Context) : Share {
+
+    override fun share(text: String) {
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, text)
@@ -15,7 +21,6 @@ class ShareService(private val context: Context) {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         context.startActivity(sendIntent)
-        return Observable.just(InsultEffect.SharedInsult)
     }
 
 }

@@ -1,4 +1,4 @@
-package io.github.simonvar.insulter.ui
+package io.github.simonvar.insulter.ui.main
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import io.github.simonvar.insulter.feature.InsultFeature
 import io.github.simonvar.insulter.R
 import io.github.simonvar.insulter.event.UiEvent
 import io.github.simonvar.insulter.base.ObservableSourceActivity
-import io.github.simonvar.insulter.feature.InsultLanguage
+import io.github.simonvar.insulter.feature.models.InsultLanguage
 import io.github.simonvar.insulter.ui.langdialog.InsultLanguageDialog
 import io.github.simonvar.insulter.viewmodel.MainViewModel
 import io.reactivex.functions.Consumer
@@ -17,7 +17,8 @@ class MainActivity : ObservableSourceActivity<UiEvent>(), Consumer<MainViewModel
 
     private val insultFeature by inject<InsultFeature>()
 
-    private val bindings = MainActivityBindings(this,
+    private val bindings = MainActivityBindings(
+        this,
         insultFeature,
         NewsListener(this)
     )

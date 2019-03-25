@@ -1,6 +1,6 @@
 package io.github.simonvar.insulter.viewmodel
 
-import io.github.simonvar.insulter.feature.InsultLanguage
+import io.github.simonvar.insulter.feature.models.InsultLanguage
 
 data class MainViewModel(
     val text: String?,

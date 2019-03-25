@@ -9,7 +9,7 @@ import io.github.simonvar.insulter.R
 import io.github.simonvar.insulter.base.ObservableSourceDialogFragment
 import io.github.simonvar.insulter.event.UiEvent
 import io.github.simonvar.insulter.feature.InsultFeature
-import io.github.simonvar.insulter.feature.InsultLanguage
+import io.github.simonvar.insulter.feature.models.InsultLanguage
 import org.koin.android.ext.android.inject
 import kotlinx.android.synthetic.main.fragment_languge_dialog.view.*
 

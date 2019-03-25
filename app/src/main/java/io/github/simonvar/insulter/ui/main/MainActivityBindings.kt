@@ -1,4 +1,4 @@
-package io.github.simonvar.insulter.ui
+package io.github.simonvar.insulter.ui.main
 
 import com.badoo.mvicore.android.AndroidBindings
 import com.badoo.mvicore.binder.named

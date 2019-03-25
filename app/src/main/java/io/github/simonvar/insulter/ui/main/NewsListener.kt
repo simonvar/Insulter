@@ -1,4 +1,4 @@
-package io.github.simonvar.insulter.ui
+package io.github.simonvar.insulter.ui.main
 
 import android.content.Context
 import android.util.Log

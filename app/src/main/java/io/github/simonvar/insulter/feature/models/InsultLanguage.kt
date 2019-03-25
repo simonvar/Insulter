@@ -1,4 +1,4 @@
-package io.github.simonvar.insulter.feature
+package io.github.simonvar.insulter.feature.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -1,6 +1,6 @@
 package io.github.simonvar.insulter.event
 
-import io.github.simonvar.insulter.feature.InsultLanguage
+import io.github.simonvar.insulter.feature.models.InsultLanguage
 
 sealed class UiEvent {
     object GenerateEvent : UiEvent()

@@ -1,6 +1,6 @@
 package io.github.simonvar.insulter.feature.data
 
-import io.github.simonvar.insulter.feature.InsultLanguage
+import io.github.simonvar.insulter.feature.models.InsultLanguage
 
 sealed class InsultEffect {
     object StartedLoading : InsultEffect()

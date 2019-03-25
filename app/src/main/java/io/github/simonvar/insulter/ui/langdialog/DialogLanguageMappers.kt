@@ -1,7 +1,7 @@
 package io.github.simonvar.insulter.ui.langdialog
 
 import io.github.simonvar.insulter.R
-import io.github.simonvar.insulter.feature.InsultLanguage
+import io.github.simonvar.insulter.feature.models.InsultLanguage
 
 fun InsultLanguage.toDialogRadioId() = when(this) {
     InsultLanguage.RU -> R.id.radio_ru

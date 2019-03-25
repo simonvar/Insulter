@@ -1,7 +1,7 @@
 package io.github.simonvar.insulter.feature.data
 
 import android.os.Parcelable
-import io.github.simonvar.insulter.feature.InsultLanguage
+import io.github.simonvar.insulter.feature.models.InsultLanguage
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

@@ -4,7 +4,6 @@ import com.badoo.mvicore.android.AndroidBindings
 import com.badoo.mvicore.binder.using
 import io.github.simonvar.insulter.event.UiEventTransformer
 import io.github.simonvar.insulter.feature.InsultFeature
-import io.github.simonvar.insulter.viewmodel.MainViewModelTransformer
 
 class InsultLanguageDialogBindings(
     view: InsultLanguageDialog,

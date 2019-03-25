@@ -1,4 +1,4 @@
-package io.github.simonvar.insulter.feature
+package io.github.simonvar.insulter.feature.transforms
 
 import com.badoo.mvicore.element.NewsPublisher
 import io.github.simonvar.insulter.feature.data.InsultEffect

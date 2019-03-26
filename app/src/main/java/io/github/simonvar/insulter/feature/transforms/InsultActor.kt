@@ -11,7 +11,6 @@ import io.github.simonvar.insulter.services.Clipboard
 import io.github.simonvar.insulter.services.Share
 import io.reactivex.Observable
 import io.reactivex.Observable.just
-import io.reactivex.android.schedulers.AndroidSchedulers
 
 class InsultActor(
     private val clipboard: Clipboard,

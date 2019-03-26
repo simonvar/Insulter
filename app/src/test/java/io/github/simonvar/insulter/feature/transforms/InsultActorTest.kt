@@ -5,7 +5,6 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import io.github.simonvar.insulter.api.Insult
 import io.github.simonvar.insulter.api.InsultRepository
-import io.github.simonvar.insulter.base.RxComposer
 import io.github.simonvar.insulter.feature.data.InsultEffect
 import io.github.simonvar.insulter.feature.data.InsultState
 import io.github.simonvar.insulter.feature.data.InsultWish
@@ -26,10 +25,7 @@ class InsultActorTest {
     fun `generate insult correct lang`() {
         val actor = InsultActor(mockClipboardService(),
             mockShareService(),
-            mockApiService(CORRECT_LANG, Observable.just(someInsult())),
-            object : RxComposer<InsultEffect> {
-                override fun compose(stream: Observable<InsultEffect>) = stream
-            }
+            mockApiService(CORRECT_LANG, Observable.just(someInsult()))
         )
 
         val newInsults = actor.invoke(someState(), InsultWish.LoadInsult).toList().blockingGet()

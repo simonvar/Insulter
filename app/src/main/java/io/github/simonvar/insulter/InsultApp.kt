@@ -3,7 +3,6 @@ package io.github.simonvar.insulter
 import android.app.Application
 import io.github.simonvar.insulter.api.InsultApiService
 import io.github.simonvar.insulter.api.InsultRepository
-import io.github.simonvar.insulter.base.ObserveMainThreadRxComposer
 import io.github.simonvar.insulter.feature.data.InsultState
 import io.github.simonvar.insulter.feature.models.InsultLanguage
 import io.github.simonvar.insulter.feature.transforms.InsultActor
@@ -16,7 +15,6 @@ import io.github.simonvar.insulter.services.Share
 import io.github.simonvar.insulter.services.ShareService
 import org.koin.android.ext.android.startKoin
 import org.koin.dsl.module.module
-
 
 class InsultApp : Application() {
 
@@ -35,8 +33,7 @@ class InsultApp : Application() {
                 InsultActor(
                     get(),
                     get(),
-                    get(),
-                    ObserveMainThreadRxComposer()
+                    get()
                 )
             }
             factory { InsultReducer() }

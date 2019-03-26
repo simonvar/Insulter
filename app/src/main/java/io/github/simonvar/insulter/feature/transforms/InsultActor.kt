@@ -3,7 +3,6 @@ package io.github.simonvar.insulter.feature.transforms
 import com.badoo.mvicore.element.Actor
 import io.github.simonvar.insulter.api.Insult
 import io.github.simonvar.insulter.api.InsultRepository
-import io.github.simonvar.insulter.base.RxComposer
 import io.github.simonvar.insulter.feature.data.InsultEffect
 import io.github.simonvar.insulter.feature.data.InsultEffect.*
 import io.github.simonvar.insulter.feature.data.InsultState
@@ -12,23 +11,22 @@ import io.github.simonvar.insulter.services.Clipboard
 import io.github.simonvar.insulter.services.Share
 import io.reactivex.Observable
 import io.reactivex.Observable.just
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 class InsultActor(
     private val clipboard: Clipboard,
     private val share: Share,
-    private val api: InsultRepository,
-    private val composer: RxComposer<InsultEffect>
+    private val api: InsultRepository
 ) : Actor<InsultState, InsultWish, InsultEffect> {
 
     override fun invoke(state: InsultState, wish: InsultWish): Observable<InsultEffect> =
         when (wish) {
-            is InsultWish.LoadInsult ->
-                composer.compose(api.generateInsult(state.lang.literal)
+            is InsultWish.LoadInsult -> api.generateInsult(state.lang.literal)
                     .map(Insult::insult)
                     .map(::LoadedInsult)
                     .cast(InsultEffect::class.java)
                     .startWith(just(StartedLoading))
-                    .onErrorReturn(::ErrorLoading))
+                    .onErrorReturn(::ErrorLoading)
 
             is InsultWish.CopyInsult -> {
                 clipboard.copy(wish.text)
@@ -48,4 +46,5 @@ class InsultActor(
 
             is InsultWish.OpenAbout -> just(OpenAbout)
         }
+
 }

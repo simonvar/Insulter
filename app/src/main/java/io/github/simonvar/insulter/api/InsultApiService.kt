@@ -1,6 +1,7 @@
 package io.github.simonvar.insulter.api
 
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -38,6 +39,7 @@ class InsultApiService(private val type: String) : InsultRepository {
 
     override fun generateInsult(language: String) = insultApi
         .generateInsult(language, type)
-        .subscribeOn(Schedulers.io())!!
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())!!
 
 }

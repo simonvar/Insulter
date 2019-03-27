@@ -3,8 +3,6 @@ package io.github.simonvar.insulter.services
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import io.github.simonvar.insulter.feature.data.InsultEffect
-import io.reactivex.Observable
 
 interface Clipboard {
     fun copy(text: String)

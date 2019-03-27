@@ -1,10 +1,10 @@
 package io.github.simonvar.insulter.viewmodel
 
-import io.github.simonvar.insulter.feature.data.InsultState
+import io.github.simonvar.insulter.feature.InsultFeature
 
-class MainViewModelTransformer : (InsultState) -> MainViewModel {
+class MainViewModelTransformer : (InsultFeature.State) -> MainViewModel {
 
-    override fun invoke(state: InsultState) = MainViewModel(
+    override fun invoke(state: InsultFeature.State) = MainViewModel(
         text = state.text ?: "",
         isLoading = state.isLoading,
         isTextActionsEnabled = state.text != null,

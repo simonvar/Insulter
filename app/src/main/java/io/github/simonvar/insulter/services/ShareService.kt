@@ -2,13 +2,9 @@ package io.github.simonvar.insulter.services
 
 import android.content.Context
 import android.content.Intent
-import io.github.simonvar.insulter.feature.data.InsultEffect
-import io.reactivex.Observable
 
 interface Share {
-
     fun share(text: String)
-
 }
 
 class ShareService(private val context: Context) : Share {

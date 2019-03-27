@@ -3,12 +3,9 @@ package io.github.simonvar.insulter
 import android.app.Application
 import io.github.simonvar.insulter.api.InsultApiService
 import io.github.simonvar.insulter.api.InsultRepository
-import io.github.simonvar.insulter.feature.data.InsultState
-import io.github.simonvar.insulter.feature.models.InsultLanguage
-import io.github.simonvar.insulter.feature.transforms.InsultActor
 import io.github.simonvar.insulter.feature.InsultFeature
-import io.github.simonvar.insulter.feature.transforms.InsultNewsPublisher
-import io.github.simonvar.insulter.feature.transforms.InsultReducer
+import io.github.simonvar.insulter.feature.executors.InsultActorExecutor
+import io.github.simonvar.insulter.feature.executors.InsultActorExecutorImpl
 import io.github.simonvar.insulter.services.Clipboard
 import io.github.simonvar.insulter.services.ClipboardService
 import io.github.simonvar.insulter.services.Share
@@ -22,30 +19,14 @@ class InsultApp : Application() {
         super.onCreate()
 
         val servicesModule = module {
-            factory { ClipboardService(get()) as Clipboard }
-            factory { ShareService(get()) as Share }
-            factory { InsultApiService("json") as InsultRepository }
+            factory <Clipboard> { ClipboardService(get()) }
+            factory <Share> { ShareService(get()) }
+            factory <InsultRepository> { InsultApiService("json") }
         }
 
         val insultModule = module {
-            factory { InsultState(null, false, InsultLanguage.EN) }
-            factory {
-                InsultActor(
-                    get(),
-                    get(),
-                    get()
-                )
-            }
-            factory { InsultReducer() }
-            factory { InsultNewsPublisher() }
-            single {
-                InsultFeature(
-                    get(),
-                    get(),
-                    get(),
-                    get()
-                )
-            }
+            factory <InsultActorExecutor> { InsultActorExecutorImpl(get(), get(), get()) }
+            single { InsultFeature(get()) }
         }
 
         startKoin(applicationContext, modules = listOf(servicesModule, insultModule))

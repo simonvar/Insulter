@@ -1,17 +1,17 @@
 package io.github.simonvar.insulter.event
 
-import io.github.simonvar.insulter.feature.data.InsultWish
+import io.github.simonvar.insulter.feature.InsultFeature
 
-object UiEventTransformer : (UiEvent) -> InsultWish? {
+object UiEventTransformer : (UiEvent) -> InsultFeature.Wish? {
 
     override fun invoke(event: UiEvent) = when(event){
-        is UiEvent.GenerateEvent -> InsultWish.LoadInsult
-        is UiEvent.ShowLanguageDialogEvent -> InsultWish.LanguageDialog
-        is UiEvent.ShareEvent -> InsultWish.ShareInsult(event.text)
-        is UiEvent.CopyEvent -> InsultWish.CopyInsult(event.text)
-        is UiEvent.DismissLanguageDialogEvent -> InsultWish.DismissDialog
-        is UiEvent.ChangeLangEvent -> InsultWish.ChangeLang(event.lang)
-        is UiEvent.OpenAbout -> InsultWish.OpenAbout
+        is UiEvent.GenerateEvent -> InsultFeature.Wish.Load
+        is UiEvent.ShowLanguageDialogEvent -> InsultFeature.Wish.LanguageDialog
+        is UiEvent.ShareEvent -> InsultFeature.Wish.Share(event.text)
+        is UiEvent.CopyEvent -> InsultFeature.Wish.Copy(event.text)
+        is UiEvent.DismissLanguageDialogEvent -> InsultFeature.Wish.DismissDialog
+        is UiEvent.ChangeLangEvent -> InsultFeature.Wish.ChangeLang(event.lang)
+        is UiEvent.OpenAbout -> InsultFeature.Wish.OpenAbout
     }
 
 }

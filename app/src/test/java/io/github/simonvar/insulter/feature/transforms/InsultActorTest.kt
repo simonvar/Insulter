@@ -5,6 +5,7 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import io.github.simonvar.insulter.api.Insult
 import io.github.simonvar.insulter.api.InsultRepository
+import io.github.simonvar.insulter.base.blockingToList
 import io.github.simonvar.insulter.feature.InsultFeature
 import io.github.simonvar.insulter.feature.executors.InsultActorExecutorImpl
 import io.github.simonvar.insulter.feature.models.InsultLanguage
@@ -18,7 +19,8 @@ class InsultActorTest {
     @Test
     fun `generate insult wish correct`() {
         val actor = someActor(Observable.just(someInsult()))
-        val newInsults = actor.invoke(someState(), InsultFeature.Wish.Load).toList().blockingGet()
+        val newInsults = actor.invoke(someState(), InsultFeature.Wish.Load)
+            .blockingToList()
 
         assert(newInsults.size == 2)
         assert(newInsults[0] is InsultFeature.Effect.StartedLoading)
@@ -28,7 +30,8 @@ class InsultActorTest {
     @Test
     fun `generate insult wish error`() {
         val actor = someActor(Observable.error(Exception()))
-        val newInsults = actor.invoke(someState(), InsultFeature.Wish.Load).toList().blockingGet()
+        val newInsults = actor.invoke(someState(), InsultFeature.Wish.Load)
+            .blockingToList()
 
         assert(newInsults.size == 2)
         assert(newInsults[0] is InsultFeature.Effect.StartedLoading)
@@ -37,11 +40,10 @@ class InsultActorTest {
 
     @Test
     fun `copy wish`() {
-        val actor = someActor(Observable.never())
+        val actor = someActor()
 
         val copyEffect = actor.invoke(someState(), InsultFeature.Wish.Copy(INSULT_TEXT))
-            .toList()
-            .blockingGet()
+            .blockingToList()
 
         assert(copyEffect.size == 1)
         assert(copyEffect[0] is InsultFeature.Effect.Copied)
@@ -49,11 +51,10 @@ class InsultActorTest {
 
     @Test
     fun `share wish`() {
-        val actor = someActor(Observable.never())
+        val actor = someActor()
 
         val shareEffect = actor.invoke(someState(), InsultFeature.Wish.Share(INSULT_TEXT))
-            .toList()
-            .blockingGet()
+            .blockingToList()
 
         assert(shareEffect.size == 1)
         assert(shareEffect[0] is InsultFeature.Effect.Shared)
@@ -61,18 +62,17 @@ class InsultActorTest {
 
     @Test
     fun `language dialog wish`() {
-        val actor = someActor(Observable.never())
+        val actor = someActor()
 
         val shareEffect = actor.invoke(someState(), InsultFeature.Wish.LanguageDialog)
-            .toList()
-            .blockingGet()
+            .blockingToList()
 
         assert(shareEffect.size == 1)
         assert(shareEffect[0] is InsultFeature.Effect.ShowLanguageDialog)
     }
 
 
-    private fun someActor(result: Observable<Insult>) =
+    private fun someActor(result: Observable<Insult> = Observable.never()) =
         InsultFeature.ActorImpl(someActorExecutor(result))
 
     private fun someActorExecutor(result: Observable<Insult>) = InsultActorExecutorImpl(

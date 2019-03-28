@@ -71,6 +71,39 @@ class InsultActorTest {
         assert(shareEffect[0] is InsultFeature.Effect.ShowLanguageDialog)
     }
 
+    @Test
+    fun `dismiss language dialog wish`() {
+        val actor = someActor()
+
+        val shareEffect = actor.invoke(someState(), InsultFeature.Wish.DismissDialog)
+            .blockingToList()
+
+        assert(shareEffect.size == 1)
+        assert(shareEffect[0] is InsultFeature.Effect.DismissLanguageDialog)
+    }
+
+    @Test
+    fun `change language wish`() {
+        val actor = someActor()
+
+        val lang = InsultLanguage.EN
+        val shareEffect = actor.invoke(someState(), InsultFeature.Wish.ChangeLang(lang))
+            .blockingToList()
+
+        assert(shareEffect.size == 1)
+        assert(shareEffect[0] is InsultFeature.Effect.ChangedLang)
+    }
+
+    @Test
+    fun `open about wish`() {
+        val actor = someActor()
+
+        val shareEffect = actor.invoke(someState(), InsultFeature.Wish.OpenAbout)
+            .blockingToList()
+
+        assert(shareEffect.size == 1)
+        assert(shareEffect[0] is InsultFeature.Effect.OpenAbout)
+    }
 
     private fun someActor(result: Observable<Insult> = Observable.never()) =
         InsultFeature.ActorImpl(someActorExecutor(result))

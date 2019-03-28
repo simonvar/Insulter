@@ -1,4 +1,4 @@
-package io.github.simonvar.insulter.feature.transforms
+package io.github.simonvar.insulter.feature
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn

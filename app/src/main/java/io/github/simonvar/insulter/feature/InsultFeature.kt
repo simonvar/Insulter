@@ -28,7 +28,7 @@ class InsultFeature(
         val isDialogShown: Boolean = false
     ) : Parcelable
 
-    class ActorImpl(private val executor: InsultActorExecutor) :
+    private class ActorImpl(private val executor: InsultActorExecutor) :
         Actor<State, Wish, Effect> {
 
         override fun invoke(state: State, wish: Wish): Observable<Effect> =
